@@ -1,5 +1,13 @@
+import { useCounter } from "./unit-tests/hooks/useCounter/useCounter";
+
 function App() {
-  return <div className="App">Hello, React</div>;
+  const { count, increment } = useCounter();
+
+  return (
+    <div className="App">
+      <button onClick={increment}>{count}</button>
+    </div>
+  );
 }
 
 export default App;
