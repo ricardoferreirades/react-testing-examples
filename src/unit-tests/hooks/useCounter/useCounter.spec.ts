@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { useCounter } from "./useCounter";
 
@@ -20,10 +20,12 @@ describe("useCounter", () => {
   describe("when the increment method is called", () => {
     it("sets the count to 1 when its inital value is 0", async () => {
       const { result } = renderHook(useCounter, { initialProps: 0 });
-      const { count, increment } = result.current;
-      increment();
 
-      await waitFor(() => expect(count).toBe(2));
+      act(() => {
+        result.current.increment();
+      });
+
+      expect(result.current.count).toBe(1);
     });
   });
 });
