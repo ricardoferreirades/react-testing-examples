@@ -28,4 +28,16 @@ describe("useCounter", () => {
       expect(result.current.count).toBe(1);
     });
   });
+
+  describe("when the decrement methot is called", () => {
+    it("sets the count to 0 when its inital value is 1", () => {
+      const { result } = renderHook(useCounter, { initialProps: 1 });
+
+      act(() => {
+        result.current.decrement();
+      });
+
+      expect(result.current.count).toBe(0);
+    });
+  });
 });
